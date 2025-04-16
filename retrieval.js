@@ -31,7 +31,7 @@ async function performVectorSearch(query, limit = 10) {
         });
 
         // Perform similarity search
-        const results = await vectorStore.similaritySearch(query, 10);
+        const results = await vectorStore.similaritySearch(query, limit);
         return results;
 
     } catch (error) {

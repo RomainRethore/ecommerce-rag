@@ -66,7 +66,7 @@ app.get('/orders', async (req, res) => {
 app.get('/user/:userid/recommendations', async (req, res) => {
     const userId = req.params.userid;
     const products = await getProductsListData(userId);
-    const response = await performVectorSearch(products, 10);
+    const response = await performVectorSearch(products, 3);
     res.send(response);
 }
 );
