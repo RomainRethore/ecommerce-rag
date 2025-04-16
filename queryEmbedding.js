@@ -1,5 +1,4 @@
 import { HuggingFaceInferenceEmbeddings } from "@langchain/community/embeddings/hf";
-import { MongoDBAtlasVectorSearch } from "@langchain/mongodb";
 import { MongoClient } from "mongodb";
 
 import dotenv from "dotenv";
@@ -16,7 +15,6 @@ const text = "The quick brown fox jumps over the lazy dog";
 async function generateEmbeddings(text) {
     try {
         const embedding = await embeddings.embedQuery(text);
-        // console.log(embedding);
         return embedding;
     } catch (error) {
         console.error("Error getting embeddings:", error);
@@ -36,9 +34,7 @@ async function getProductsIdsByUserId(userId) {
             order.products.forEach(product => {
                 products.push(product);
             });
-            // console.log(product.products);
         });
-        // console.log(typeof products);
         return products;
     } catch (error) {
         console.error("Error getting products:", error);
@@ -53,7 +49,6 @@ async function getProductsByIds(productId) {
             .collection("products_vectors");
 
         const products = await collection.find({ "item.id": { $in: productId } }).toArray();
-        // console.log(products.length);
         return products;
     } catch (error) {
         console.error("Error getting product:", error);
@@ -61,14 +56,11 @@ async function getProductsByIds(productId) {
 }
 
 function extractProductsListData(products) {
-    // console.log(products);
     let productsData = "";
     products.forEach(product => {
         const productData = `${product.item.name} ${product.item.description} ${product.item.category}`;
         productsData += productData + " ";
-        // console.log(productData);
     });
-    // console.log(productsData);
     return productsData;
 }
 

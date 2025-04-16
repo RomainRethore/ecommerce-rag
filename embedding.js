@@ -11,18 +11,6 @@ const embeddings = new HuggingFaceInferenceEmbeddings({
     model: process.env.HUGGINGFACE_MODEL,
 });
 
-// const text = "The quick brown fox jumps over the lazy dog";
-
-// async function getEmbeddings() {
-//     try {
-//         const embedding = await embeddings.embedQuery(text);
-//         console.log(embedding);
-//     } catch (error) {
-//         console.error("Error getting embeddings:", error);
-//     }
-// }
-// getEmbeddings();
-
 async function createIndex(collection_name) {
     try {
         const client = new MongoClient(process.env.MONGO_DB_CLOUD_URL || "");
@@ -44,7 +32,6 @@ async function createIndex(collection_name) {
         })
 
         const collection_items = await collection.find({}).toArray();
-        // console.log(collection_items);
 
         const documents = [];
 
@@ -53,7 +40,6 @@ async function createIndex(collection_name) {
                 pageContent: `${item.name + " " + item.description + " " + item.category}`,
                 metadata: { item },
             };
-            // console.log(item.name)
             documents.push(document);
         });
 
