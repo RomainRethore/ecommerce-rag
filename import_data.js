@@ -14,7 +14,7 @@ async function importData() {
         const db = client.db(dbName);
 
         const products = JSON.parse(fs.readFileSync('./data/products_real_rap90s_detailed.json', 'utf-8'));
-        const orders = JSON.parse(fs.readFileSync('./data/ordersrealrap90s.json', 'utf-8'));
+        const orders = JSON.parse(fs.readFileSync('./data/generated_orders.json', 'utf-8'));
 
         await db.collection('products').deleteMany({});
         await db.collection('orders').deleteMany({});

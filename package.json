@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "type": "module",
   "dependencies": {
     "@huggingface/inference": "^2.8.1",
     "@langchain/community": "^0.3.40",

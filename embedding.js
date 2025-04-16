@@ -53,7 +53,7 @@ async function createIndex(collection_name) {
                 pageContent: `${item.name + " " + item.description + " " + item.category}`,
                 metadata: { item },
             };
-            console.log(item.name)
+            // console.log(item.name)
             documents.push(document);
         });
 
